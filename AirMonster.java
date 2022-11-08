@@ -1,7 +1,16 @@
-class AirMonster {
+class AirMonster extends Monster {
 
-    // TODO : add constructor and initialize type to "air"
-    
-    // TODO : create an attack method which deals x2 damage to "water"
-    
+    public AirMonster(String name, int attack) {
+        super(name, attack, "air");
+    }
+
+    @Override
+    public boolean attack(Monster opponent) {
+        int damage = this.getAttack();
+        if (opponent.getType().equals("water")) {
+            damage*=2;
+        }
+        opponent.setLife(opponent.getLife() - damage);
+        return opponent.isKO();
+    }
 }
